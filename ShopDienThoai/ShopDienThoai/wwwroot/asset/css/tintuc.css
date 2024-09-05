@@ -1,0 +1,253 @@
+.bg {
+  background: #fff;
+}
+.menu_news {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu_news a {
+  display: block;
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color_text);
+  margin-bottom: 20px;
+}
+.menu_news a.active {
+  background: var(--color_orange);
+  color: #fff;
+}
+.menu_news li {
+  flex: auto;
+}
+.section_one .hr {
+  border-bottom: 2px solid #8a8a8a;
+}
+/* section_two */
+.section_two {
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+.post_type_1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.post_type_1 .post_img {
+  display: block;
+  width: 58%;
+  height: auto;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.post_type_1 .post_content {
+  width: 39%;
+}
+.post_content {
+  padding-bottom: 20px;
+}
+.post_content .post_title a {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--color_text);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: block;
+}
+.post_content .post_author {
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
+.post_content .time_push {
+  margin-right: 10px;
+}
+.post_content .post_desc {
+  color: var(--color_text);
+}
+
+.list_imgs {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.list_imgs .box_img {
+  width: 281px;
+  height: 86px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+
+.post_type_2 {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.post_type_2 .post_img {
+  display: flex;
+  width: 357px;
+  height: 170px;
+}
+.post_type_2 .post_title a {
+  padding: 4px 12px;
+  margin-bottom: 0;
+  border-left: 6px solid var(--color_orange);
+  border-right: 6px solid var(--color_orange);
+}
+.post_desc_parent {
+  overflow: hidden;
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.post_type_2 .post_desc {
+  padding: 10px 10px 0 10px;
+}
+.post_type_2 .post_author {
+  padding: 6px 10px 0 10px;
+}
+.section_two .row-2 {
+  margin-left: auto;
+}
+.section_two .row-2 .col-4 {
+  width: 416px !important;
+}
+
+/* SECTION_THREE */
+.section_title.orange {
+  color: var(--color_orange);
+}
+.bg_grey {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.post_type_3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.post_type_3 .post_img {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 213px;
+  height: 150px;
+}
+.post_type_3 .post_content {
+  width: 65%;
+}
+.post_type_3 .post_author {
+  margin-top: 20px;
+}
+
+/* section_four */
+.section_four {
+  background: #fff;
+  padding-top: 20px;
+}
+.box_video {
+  background: #eceef2;
+  padding: 16px;
+}
+.video_frame {
+  width: 100%;
+  height: 435px;
+}
+.section_four .box_img {
+  width: 425px;
+  height: 468px;
+}
+.no_pading {
+  padding-left: 0;
+}
+.section_four .section_title {
+  background: #fff;
+}
+
+
+.post_type_4 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.post_type_4 .post_img {
+  width: 340px;
+  height: 150px;
+  display: block;
+}
+.post_type_4 .post_content {
+  padding-left: 20px;
+}
+.post_type_4 .post_title a {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.post_type_4 .time_push {
+  margin: 10px 0 0;
+  display: block;
+}
+
+.section_four .post_type_2 {
+  display: block;
+  box-shadow: none;
+}
+.section_four .post_type_2 .post_img {
+  width: 100%;
+}
+
+/* PHÂN TRANG */
+.list_pages {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 0px 0 20px;
+}
+.list_pages li+li {
+  margin-left: 4px;
+}
+.list_pages li {
+  display: block;
+  padding: 6px 12px;
+  color: #6c8aa7;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.list_pages .active {
+  background: var(--color_orange);
+  color: #fff;
+  font-weight: 500;
+}
+.list_pages .btn {
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  color: var(--color_dark);
+  border-radius: 4px;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+.list_pages li:hover {
+  background: #dce3ea;
+  color: #6c8aa7;
+}
+.list_pages .active:hover {
+  background: var(--color_orange);
+  color: #fff;
+  cursor: default;
+}
+.list_pages .btn {
+  text-transform: uppercase;
+  color: var(--color_dark);
+}
+.list_pages .btn:hover {
+  color: var(--color_orange);
+}

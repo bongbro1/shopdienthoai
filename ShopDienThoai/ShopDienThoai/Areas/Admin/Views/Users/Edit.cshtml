@@ -1,0 +1,54 @@
+﻿@model ShopDienThoai.Models.User
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin người dùng</h4>
+                <form asp-action="edit" method="post" class="forms-sample">
+                    <input type="hidden" name="id" value="@Model.UserId" />
+                    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+                    <div class="form-group">
+                        <label asp-for="Name" class="form-label">Tên người dùng</label>
+                        <input asp-for="Name" class="form-control" placeholder="Nhập tên người dùng">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">Mật khẩu</label>
+                        <input asp-for="Password" class="form-control" placeholder="Nhập mật khẩu">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Nhập email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="form-label">Số điện thoại</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Nhập số điện thoại">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="form-label">Địa chỉ</label>
+                        <input asp-for="Address" class="form-control" placeholder="Nhập địa chỉ">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Role" class="form-label">Vai trò</label>
+                        <select asp-for="Role" class="form-control" asp-items="ViewBag.Roles">
+                            <option value="">-- Chọn vai trò --</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Lưu thay đổi</button>
+                    <a href="/admin/users" class="btn btn-dark">Hủy</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

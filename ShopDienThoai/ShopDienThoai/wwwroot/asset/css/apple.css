@@ -1,0 +1,155 @@
+
+/* SECTION_ONE */
+.section_one {
+  background: #fff;
+}
+.box_banner_left {
+  height: 170px;
+}
+.box_banner_right {
+  height: 170px;
+}
+
+/* list catalog */
+.list_catalog {
+  display: flex;
+  justify-content: start;
+  margin: 20px 0;
+}
+.list_catalog .box_img {
+  display: block;
+}
+.list_catalog li {
+  border: 1px solid #aaa;
+  border-radius: 26px;
+  min-width: 160px;
+  padding: 6px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 8px 0;
+}
+
+/* fillter_bar */
+.fillter_bar {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.fillter_bar>li {
+  margin-left: 10px;
+  transition: background ease-in-out 0.2s;
+}
+.fillter_bar>li a {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--color_dark2);
+  font-size: 16px;
+  transition: color ease-in-out 0.2s;
+}
+.fillter_bar .icon {
+  margin-left: 10px;
+  position: relative;
+  top: -4px;
+  left: 0;
+}
+.fillter_bar>li>a:hover {
+  background: var(--color_dark2);
+}
+.fillter_bar>li>a:hover {
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* menu con */
+.has_child {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.has_child.active>a {
+  border-radius: 0;
+  background: #54708c;
+}
+.has_child.active>a {
+  color: #fff;
+}
+.has_child.active>a:hover {
+  background: var(--color_dark2);
+  border-radius: 6px;
+}
+.box_child {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  border: 1px solid var(--color_dark);
+  text-wrap: nowrap;
+  display: none;
+  min-width: 250px;
+}
+.has_child.active .box_child {
+  display: block;
+}
+.box_child li:hover {
+  background: var(--color_dark2);
+}
+.has_child .box_child a {
+  display: block;
+  padding: 6px 12px;
+}
+.box_child li:hover a {
+  color: #fff;
+}
+
+/* PHÂN TRANG */
+.list_pages {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 20px 0 40px;
+}
+.list_pages li+li {
+  margin-left: 4px;
+}
+.list_pages li {
+  display: block;
+  padding: 6px 12px;
+  color: #6c8aa7;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.list_pages .active {
+  background: var(--color_orange);
+  color: #fff;
+  font-weight: 500;
+}
+.list_pages .btn {
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  color: var(--color_dark);
+  border-radius: 4px;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+.list_pages li:hover {
+  background: #dce3ea;
+  color: #6c8aa7;
+}
+.list_pages .active:hover {
+  background: var(--color_orange);
+  color: #fff;
+  cursor: default;
+}
+.list_pages .btn {
+  text-transform: uppercase;
+  color: var(--color_dark);
+}
+.list_pages .btn:hover {
+  color: var(--color_orange);
+}

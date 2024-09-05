@@ -1,0 +1,45 @@
+﻿@using System.Globalization
+@model IEnumerable<ShopDienThoai.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Danh sách sản phẩm</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Danh mục</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>@product.ProductId</td>
+                            <td>@product.ProductName</td>
+                            <td>@product.Price?.ToString("C", CultureInfo.GetCultureInfo("en-US"))</td>
+                            <td>@product.Category?.CategoryName</td>
+                            <td style="white-space: nowrap;">
+                                <a href="/admin/products/edit?id=@product.ProductId" class="btn btn-primary btn-fw">Sửa</a>
+                                <a href="/admin/products/delete?id=@product.ProductId" class="btn btn-danger btn-fw">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<a href="/admin/products/create" class="btn btn-primary mt-4">Thêm sản phẩm</a>

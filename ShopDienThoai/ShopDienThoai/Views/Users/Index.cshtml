@@ -1,0 +1,368 @@
+﻿@model ShopDienThoai.Models.User
+@inject ShopDienThoai.Controllers.IProductService _productService;
+@{
+	ViewData["Title"] = "Thông tin tài khoản";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["ModalType"] = TempData["ModalType"]?.ToString();
+	ViewData["ModalTitle"] = TempData["ModalTitle"]?.ToString();
+	ViewData["ModalMessage"] = TempData["ModalMessage"]?.ToString();
+	List<WishList> wishlists = ViewBag.WishList as List<WishList>;
+	Product product = new Product();
+}
+
+
+<div class="main">
+    <div class="container pb-4">
+	<div class="row">
+		<div class="col-12">
+			<nav aria-label="breadcrumb" class="main-breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">Trang chủ </a></li>
+					<li class="breadcrumb-item active" aria-current="page"> / Thông tin cá nhân</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<div class="row gutters">
+		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+			<div class="card h-100">
+				<div class="card-body">
+					<div class="account-settings">
+						<div class="user-profile">
+							<div class="user-avatar">
+								<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+							</div>
+							<h5 class="user-name">@Model.Name</h5>
+							<h6 class="user-email">@Model.Email</h6>
+						</div>
+						<div class="about">
+							<h5>About</h5>
+							<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+			<div class="card h-100">
+				<form action="/users/edit" method="post" class="card-body">
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h6 class="mb-2 text-primary">Thông tin cá nhân</h6>
+						</div>
+						<input type="hidden" asp-for="UserId" placeholder="UserID">
+						<input type="hidden" name="id" value="@Model.UserId">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="fullName">Full Name</label>
+								<input type="text" class="form-control" name="name" value="@Model.Name" placeholder="Enter full name">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="eMail">Email</label>
+								<input type="email" class="form-control" name="email" readonly value="@Model.Email" placeholder="Enter email ID">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="phone">Phone</label>
+								<input type="text" class="form-control" name="phone" value="@Model.PhoneNumber" placeholder="Enter phone number">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="address">Address</label>
+								<input type="text" class="form-control" name="address" value="@Model.Address" placeholder="Enter address">
+							</div>
+						</div>
+					</div>
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+							<h6 class="mt-2 text-primary">Sản phẩm yêu thích</h6>
+						</div>
+						<div class="col-md-12">
+							<div class="table_responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>
+													<div class="form-check form-check-muted m-0">
+														<label class="form-check-label">
+															<input type="checkbox" class="form-check-input check_all">
+															<i class="input-helper"></i>
+														</label>
+													</div>
+												</th>
+												<th>Hình ảnh</th>
+												<th>Sản phẩm</th>
+												<th>Số lượng còn</th>
+												<th>Thời gian thêm</th>
+												<th>#</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (WishList wish in wishlists)
+											{
+												{
+													product = _productService._getProductByProductid(wish.ProductId);
+												}
+												<tr>
+													<td>
+														<div class="form-check form-check-muted m-0">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input">
+																<i class="input-helper"></i>
+															</label>
+														</div>
+													</td>
+													<td>
+														<div class="img_box" style="width: 40px;">
+															<img src="~/asset/img/@product?.ImageURL.Split(";")[0]" />
+														</div>
+													</td>
+													<td><a href="/products/details?id=@product?.ProductId">@product?.ProductName</a></td>
+													<td>@product?.StockQuantity</td>
+													<td>@wish.AddedDate.ToString("dd/MM/yyyy")</td>
+													<td class="ps-0">
+														<a href="/shopping/removefromwishlist?id=@wish.WishlistId" class="btn remove_wishlist">
+															<i class="fa-regular fa-circle-xmark"></i>
+														</a>
+													</td>
+												</tr>
+											}
+
+										</tbody>
+									</table>
+							</div>
+							
+						</div>
+					</div>
+					<div class="row gutters mt-4">
+						<div class="col-sm-2">
+							<div class="text-right" style="text-align: left;">
+									<a class="btn btn-danger btn_remove" style="background: #ff453a;color: #fff;">Remove</a>
+							</div>
+						</div>
+						<div class="col-sm-10">
+							<div class="text-right">
+								<a class="btn btn-secondary">Cancel</a>
+								<button type="submit" class="btn btn-primary">Update</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+
+
+<style>
+	.remove_wishlist {
+		color: #ff453a !important;
+	}
+	.breadcrumb {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		padding: .75rem 1rem;
+		margin-bottom: 1rem;
+		list-style: none;
+		background-color: #e9ecef;
+		border-radius: .25rem;
+	}
+
+	.breadcrumb-item.active {
+		color: #6c757d;
+		padding-left: 0.5rem;
+		display: inline-block;
+	}
+
+	.breadcrumb a {
+		font-size: 16px;
+		color: #007bff;
+		text-decoration: none;
+		background-color: transparent;
+	}
+	.table_responsive::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, and Opera */
+	}
+	.account-settings .user-profile {
+		margin: 0 0 1rem 0;
+		padding-bottom: 1rem;
+		text-align: center;
+		box-shadow: 0 0 10px #00ca929c;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.account-settings .user-profile .user-avatar {
+		margin: 0 0 1rem 0;
+	}
+	.account-settings .user-profile .user-avatar img {
+		width: 90px;
+		height: 90px;
+		-webkit-border-radius: 100px;
+		-moz-border-radius: 100px;
+		border-radius: 100px;
+	}
+	.account-settings .user-profile h5.user-name {
+		margin: 0 0 0.5rem 0;
+	}
+	.account-settings .user-profile h6.user-email {
+		margin: 0;
+		font-size: 0.8rem;
+		font-weight: 400;
+		color: #9fa8b9;
+	}
+	.account-settings .about {
+		margin: 2rem 0 0 0;
+		text-align: center;
+	}
+	.account-settings .about h5 {
+		margin: 0 0 15px 0;
+		color: #007ae1;
+	}
+	.account-settings .about p {
+		font-size: 0.825rem;
+	}
+
+	.card {
+		background: #ffffff;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		border: 0;
+		margin-bottom: 1rem;
+    	padding: 20px;
+		height: 100%;
+	}
+	h6.text-primary {
+		color: #007ae1;
+		letter-spacing: 0.5px;
+		font-size: 16px;
+	}
+	.form-control {
+		border: 1px solid #cfd1d8;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		font-size: .825rem;
+		background: #ffffff;
+		color: #2e323c;
+		display: block;
+		width: 100%;
+		height: calc(1.5em + .75rem + 2px);
+		padding: .375rem .75rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		border-radius: .25rem;
+		transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	}
+	.form-control:focus {
+		color: #495057;
+		background-color: #fff;
+		border-color: #80bdff;
+		outline: 0;
+		box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+	}
+	label {
+		display: inline-block;
+		margin-bottom: .5rem;
+	}
+
+	.form-check-label {
+		margin-bottom: 0;
+	}
+	.btn {
+		display: inline-block;
+		font-weight: 400;
+		color: #212529;
+		text-align: center;
+		vertical-align: middle;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background-color: transparent;
+		border: 1px solid transparent;
+		padding: .375rem .75rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		border-radius: .25rem;
+		cursor: pointer;
+		transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #007bff;
+		border-color: #007bff;
+	}
+	.btn-secondary {
+		color: #fff;
+		background-color: #6c757d;
+		border-color: #6c757d;
+	}
+	.btn-secondary:hover {
+		color: #fff;
+		background-color: #5a6268;
+		border-color: #545b62;
+	}
+	.btn-primary:hover {
+		color: #fff;
+		background-color: #0069d9;
+		border-color: #0062cc;
+	}
+	.text-right {
+		margin-top: 20px;
+		text-align: right;
+	}
+	h5 {
+		font-size: 1.25rem;
+		font-weight: 500;
+		line-height: 1.2;
+
+	}
+	.form-group {
+		margin-bottom: 1rem;
+	}
+	.table_responsive {
+		width: 100%;
+		max-height: 200px;
+		height: 200px;
+		overflow-y: scroll;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	}
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-bottom: 1rem;
+		color: #212529;
+	}
+	.table thead th {
+		vertical-align: bottom;
+		border-bottom: 2px solid #dee2e6;
+	}
+	.table th {
+		background-color: #f2f2f2;
+	}
+	.table th, .table td {
+		padding: 10px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+	.table td, .table th {
+		padding: .75rem;
+		vertical-align: middle;
+		border-top: 1px solid #dee2e6;
+	}
+</style>

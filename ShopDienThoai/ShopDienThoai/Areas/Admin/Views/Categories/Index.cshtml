@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ShopDienThoai.Models.Category>
+
+@{
+    ViewData["Title"] = "Quản lý danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Danh sách danh mục</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>@category.CategoryId</td>
+                            <td style="min-width: 390px;">@category.CategoryName</td>
+                            <td>
+                                <a href="/admin/categories/edit?id=@category.CategoryId" class="btn btn-primary btn-fw">Sửa</a>
+                                <a href="/admin/categories/delete?id=@category.CategoryId" class="btn btn-danger btn-fw">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="/admin/categories/create" class="btn btn-primary mt-4">Thêm danh mục</a>

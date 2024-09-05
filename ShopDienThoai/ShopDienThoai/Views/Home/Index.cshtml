@@ -1,0 +1,1282 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	var productsByBrand = ViewBag.ProductsByBrand as Dictionary<string, List<Product>>;
+
+	// Lấy dữ liệu từ ViewBag và chuyển về dạng List<Product>
+	// var laptopNoiBatProducts = ViewBag.laptopnoibat as List<ShopDienThoai.Models.Product>;
+	// var phuKienNoiBatProducts = ViewBag.phukiennoibat as List<ShopDienThoai.Models.Product>;
+	// var dongHoThongMinhProducts = ViewBag.donghothongminh as List<ShopDienThoai.Models.Product>;
+	// var mayTinhBangProducts = ViewBag.maytinhbang as List<ShopDienThoai.Models.Product>;
+	// var dienThoaiNoiBatNhatProducts = ViewBag.dienthoainoitbatnhat as List<ShopDienThoai.Models.Product>;
+	// var sanPhamMoiProducts = ViewBag.sanphammoi as List<ShopDienThoai.Models.Product>;
+	// var hotsaleGiaTotProducts = ViewBag.hotsalegiatot as List<ShopDienThoai.Models.Product>;
+	string [] imgs;
+}
+
+<main class="main">
+	<div class="container">
+		<section class="section_one">
+			<div class="row">
+				<div class="col-8">
+					<div class="sliders">
+						<div class="list_imgs d-flex flex-nowrap" id="js_list_imgs">
+							<img src="~/asset/img/sld1.jpg" alt="">
+							<img src="~/asset/img/sld2.png" alt="">
+							<img src="~/asset/img/sld3.png" alt="">
+							<img src="~/asset/img/sld4.png" alt="">
+							<img src="~/asset/img/sld5.png" alt="">
+							<img src="~/asset/img/sld6.png" alt="">
+						</div>
+
+						<ul class="list_dots" id="js_list_dots">
+							<li class="index active"></li>
+							<li class="index"></li>
+							<li class="index"></li>
+							<li class="index"></li>
+							<li class="index"></li>
+							<li class="index"></li>
+						</ul>
+
+					</div>
+					<ul class="list_banner_title" id="js_list_banner_title">
+						<li class="active"><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+						<li><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+						<li><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+						<li><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+						<li><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+						<li><a href="#">Đặt hàng trước Galaxy S24 series</a></li>
+					</ul>
+				</div>
+				<div class="col-4">
+					<h3 class="section_navigation">
+						<a href="#">
+							<span class="first">Tin công nghệ</span> <span class="second"><span class="dot"></span>Siêu khuyến mãi tại Tebleplaza</span>
+						</a>
+					</h3>
+					<div class="post_type_1">
+						<a href="#" class="post_img"><img src="~/asset/img/thumb.jpeg" alt=""></a>
+						<div class="post_content">
+							<h3 class="post_title"><a href="#">Galaxy S24 Series chính thức ra mắt</a></h3>
+							<p class="post_date">01/08/2024</p>
+						</div>
+					</div>
+					<div class="post_type_1 mt-3">
+						<a href="#" class="post_img"><img src="~/asset/img/maxresdefault.jpg" alt=""></a>
+						<div class="post_content">
+							<h3 class="post_title"><a href="#">Cách xem trực tiếp sự kiện Galaxy Unpacked 2024 ra mắt Galaxy S24</a></h3>
+							<p class="post_date">01/08/2024</p>
+						</div>
+					</div>
+					<div class="post_type_1 mt-3">
+						<a href="#" class="banner_adv"><img src="~/asset/img/714-x-310.jpg" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- SALE GIÁ TỐT -->
+		<section class="section_two">
+			<div class="container">
+				<div class="section_container row">
+					<!-- row_first -->
+					<h3 class="section_title"><span class="icon"><i class="fa-solid fa-bolt-lightning"></i></span> Hotsale giá tốt</h3>
+					<div class="list_products">
+						<div class="row row_products">
+							@foreach (var product in productsByBrand["hotsalegiatot"])
+							{
+								{
+									imgs = product.ImageURL.Split(';');
+								}
+								<div class="col-12d5">
+									<div class="product_item">
+										<!-- slider_img -->
+										<div class="product_img">
+											<div class="list_product_img">
+												<button id="product_img_prev"><i class="fa-solid fa-chevron-left"></i></button>
+												<div class="slide_container">
+													<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+														@foreach (var img in imgs)
+														{
+															<img src="~/asset/img/@img" alt="">
+														}
+													</div>
+												</div>
+												<button id="product_img_next"><i class="fa-solid fa-chevron-right"></i></button>
+											</div>
+											<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+
+										</div>
+										<!-- comtent -->
+										<div class="product_content">
+											<p class="product_status">Hotsale</p>
+											<h4 class="product_name"><a href="/products/details?id=@product.ProductId">@product.ProductName</a></h4>
+											<p class="cost_origin">@String.Format("{0:N0} đ", product.Price)</p>
+											<span class="product_price">@String.Format("{0:N0} đ", (double)product.Price*0.9)</span>
+											<span class="sale_off">-10%</span>
+										</div>
+
+										<!-- icons -->
+										<div class="product_actions">
+											<a href="/shopping/addtowishlist?productid=@product.ProductId" class="btn btn_wishlist" product-id="@product.ProductId"><i class="fa-regular fa-heart"></i></a>
+											<a class="btn btn_addtocart"><i class="fa-solid fa-cart-plus"></i></a>
+										</div>
+									</div>
+								</div>
+							}
+
+						</div>
+						
+						<div class="row">
+							<!-- BUTTON XEM THEM -->
+							<div class="col-12 d-flex justify-content-center">
+								@if (productsByBrand["hotsalegiatot"].Count >= 10)
+								{
+									<button class="btn_viewMore" data-sourceBrand="hotsalegiatot" id="btn_viewMore">Xem Thêm</button>
+								}
+							</div>
+						</div>
+					</div>
+
+					<!-- SAN PHAM MOI -->
+					<!-- row_second -->
+					<h3 class="section_title"><span class="icon"><i class="fa-solid fa-bolt-lightning"></i></span>Sản phẩm mới</h3>
+					
+					<div class="list_products new_product">
+						<div class="row row_products">
+							@foreach (var product in productsByBrand["sanphammoi"])
+							{
+								{
+									imgs = product.ImageURL.Split(';');
+								}
+								<div class="col-12d5">
+									<div class="product_item">
+										<!-- slider_img -->
+										<div class="product_img">
+											<div class="list_product_img">
+												<button id="product_img_prev"><i class="fa-solid fa-chevron-left"></i></button>
+												<div class="slide_container">
+													<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+														@foreach (var img in imgs)
+														{
+															<img src="~/asset/img/@img" alt="">
+														}
+													</div>
+												</div>
+												<button id="product_img_next"><i class="fa-solid fa-chevron-right"></i></button>
+											</div>
+											<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+
+										</div>
+										<!-- comtent -->
+										<div class="product_content">
+											<p class="product_status gold">Hàng sắp về</p>
+											<h4 class="product_name"><a href="/products/details?id=@product.ProductId">@product.ProductName</a></h4>
+											<p class="cost_origin">@String.Format("{0:N0} đ", product.Price)</p>
+											<span class="product_price">@String.Format("{0:N0} đ", (double)product.Price * 0.9)</span>
+											<span class="sale_off">-10%</span>
+										</div>
+
+										<!-- icons -->
+										<div class="product_actions">
+											<a href="/shopping/addtowishlist?productid=@product.ProductId" class="btn btn_wishlist" product-id="@product.ProductId"><i class="fa-solid fa-heart"></i></a>
+											<a class="btn btn_addtocart"><i class="fa-solid fa-cart-plus"></i></a>
+										</div>
+									</div>
+								</div>
+							}
+
+						</div>
+
+						<div class="row">
+							<!-- BUTTON XEM THEM -->
+							<div class="col-12 d-flex justify-content-center">
+								@if (productsByBrand["sanphammoi"].Count >= 10)
+								{
+									<button class="btn_viewMore" data-sourceBrand="sanphammoi" id="btn_viewMore">Xem Thêm</button>
+								}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<section class="section_three">
+			<div class="row">
+				<div class="col-12 banner_mid"><img src="~/asset/img/banner.jpg" alt=""></div>
+			</div>
+
+			<!-- dienthoai noi bat -->
+			<div class="row navigation_menu_section">
+				<div class="col-4">
+					<h3 class="section_title"><span class="icon"><i class="fa-solid fa-star"></i></span> Điện thoại nổi bật nhất</h3>
+				</div>
+				<div class="col-8 d-flex align-items-center justify-content-end">
+					<ul class="list_category">
+						<li><a href="#">iPhone 11 Pro Max</a></li>
+						<li><a href="#">Galaxy Z Mới</a></li>
+						<li><a href="#">iPhone 12 Pro Max</a></li>
+						<li><a href="#">Samsung S23 Series</a></li>
+						<li><a href="#">Xem tất cả <span><i class="fa-solid fa-arrow-right"></i></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="list_products js_dienthoai">
+				<div class="slide_container">
+					<!-- dung de overflow hidden -->
+					<!-- dung de di chuyen -->
+					<div class="row flex-nowrap inner_slide" id="js_inner_slide">
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt1.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt3.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt4.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<p class="product_status">Đã sãn hàng</p>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- CONTROL SLIDER -->
+				<div class="control_slider">
+					<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+					<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+				</div>
+			</div>
+
+			<!-- may tinh bang -->
+			<div class="row navigation_menu_section">
+				<div class="col-4">
+					<h3 class="section_title">Máy tính bảng</h3>
+				</div>
+				<div class="col-8 d-flex align-items-center justify-content-end">
+					<ul class="list_category">
+						<li><a href="#">iPad Pro</a></li>
+						<li><a href="#">iPad Mini</a></li>
+						<li><a href="#">iPad Air</a></li>
+						<li><a href="#">iPad Gen 9</a></li>
+						<li><a href="#">Xem tất cả <span><i class="fa-solid fa-arrow-right"></i></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="list_products js_maytinhbang">
+				<div class="slide_container">
+					<div class="row flex-nowrap inner_slide" id="js_inner_slide">
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt1.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status invisible">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt3.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt4.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt5.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt6.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content pt-4">
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt6.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content pt-4">
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/mt6.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content pt-4">
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- CONTROL SLIDER -->
+				<div class="control_slider">
+					<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+					<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+				</div>
+			</div>
+
+			<!-- DONG HO THONG MINH -->
+			<div class="row navigation_menu_section">
+				<div class="col-4">
+					<h3 class="section_title">Đồng hồ thông minh</h3>
+				</div>
+				<div class="col-8 d-flex align-items-center justify-content-end">
+					<ul class="list_category">
+						<li><a href="#">Apple Watch Series 7</a></li>
+						<li><a href="#">Apple Watch Series 6</a></li>
+						<li><a href="#">Galaxy Watch 4</a></li>
+						<li><a href="#">Xem tất cả <span><i class="fa-solid fa-arrow-right"></i></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="list_products js_dongho">
+				<div class="slide_container">
+					<div class="row flex-nowrap inner_slide" id="js_inner_slide">
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh1.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh2.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh3.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh4.png" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh5.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh6.jpeg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/dh7.jpeg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Đã sẵn hàng</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">37.990.000 đ</p>
+									<span class="product_price">19.990.000 đ</span>
+									<span class="sale_off">-32%</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- CONTROL SLIDER -->
+				<div class="control_slider">
+					<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+					<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+				</div>
+			</div>
+
+			<!-- BANNER -->
+			<div class="row">
+				<div class="col-12">
+					<div class="banner_mid"><img src="~/asset/img/banner.jpg" alt=""></div>
+				</div>
+			</div>
+
+			<!-- PHU KIEN NOI BAT -->
+			<div class="row navigation_menu_section">
+				<div class="col-4">
+					<h3 class="section_title">Phụ kiện nổi bật</h3>
+				</div>
+				<div class="col-8 d-flex align-items-center justify-content-end">
+					<ul class="list_category">
+						<li><a href="#">Bao da</a></li>
+						<li><a href="#">Sạc dự phòng</a></li>
+						<li><a href="#">Loa</a></li>
+						<li><a href="#">Cáp sạc</a></li>
+						<li><a href="#">Tai nghe</a></li>
+						<li><a href="#">Xem tất cả <span><i class="fa-solid fa-arrow-right"></i></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="list_products js_phukien">
+				<div class="slide_container">
+					<div class="row flex-nowrap inner_slide" id="js_inner_slide">
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk1.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk2.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk3.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk4.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk5.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk6.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk7.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk8.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/pk9.jpg" alt="">
+										</div>
+									</div>
+									<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">1.099.000 đ</p>
+									<span class="product_price">990.000 đ</span>
+									<span class="sale_off">-9%</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- CONTROL SLIDER -->
+				<div class="control_slider">
+					<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+					<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+				</div>
+			</div>
+
+			<!-- LAPTOP NOI BAT -->
+			<div class="row navigation_menu_section">
+				<div class="col-4">
+					<h3 class="section_title">Laptop nổi bật</h3>
+				</div>
+				<div class="col-8 d-flex align-items-center justify-content-end">
+					<ul class="list_category">
+						<li><a href="#">Bao da</a></li>
+						<li><a href="#">Sạc dụ phòng</a></li>
+						<li><a href="#">Loa</a></li>
+						<li><a href="#">Cáp sạc</a></li>
+						<li><a href="#">Tai nghe</a></li>
+						<li><a href="#">Xem tất cả <span><i class="fa-solid fa-arrow-right"></i></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="list_products js_laptop">
+				<div class="slide_container">
+					<div class="row flex-nowrap inner_slide" id="js_inner_slide">
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt1.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status gold">Trả góp 0%</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt2.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt3.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt4.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status gold">Trả góp 0%</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt1.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12d5">
+							<div class="product_item">
+								<!-- slider_img -->
+								<div class="product_img">
+									<div class="list_product_img">
+										<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+											<img src="~/asset/img/lt4.jpg" alt="">
+										</div>
+									</div>
+								</div>
+								<!-- comtent -->
+								<div class="product_content">
+									<span class="product_status">Hotsale</span>
+									<h4 class="product_name"><a href="#">Combo samsung galaxy z flip5 512G siêu hót</a></h4>
+									<p class="cost_origin">11.990.000 đ</p>
+									<span class="product_price">8.990.000 đ</span>
+									<span class="sale_off">-25%</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- CONTROL SLIDER -->
+				<div class="control_slider">
+					<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+					<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<script type="module">
+	import {showMoreProduct} from "/asset/js/source.js";
+	showMoreProduct()
+</script>

@@ -1,0 +1,402 @@
+﻿@model ShopDienThoai.Models.Product
+@using product = ShopDienThoai.Models.Product
+@{
+	ViewData["Title"] = "Details";
+	double disCount = 0.1;
+}
+<div class="main">
+	<div class="container bg-white">
+		<div class="row px-2 py-2">
+			<div class="col-12">
+				<div class="bread_crum">
+					<a href="/">Trang chủ</a> / <a href="#">Điện thoại</a> / <span class="bread_crum_current">Samsung Galaxy Z Flip6 5G 12G/256G</span>
+				</div>
+				<div class="row mt-4">
+					<div class="col-12d7-x5">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="detail_header">
+									<h4 class="product_title">
+										Samsung Galaxy Z Flip6 5G 12G/256G
+									</h4>
+									<div class="product_img_main">
+										<img src="~/asset/img/dh1.png" alt="">
+									</div>
+									<ul class="product_img_list">
+										<li class="product_img_box active">
+											<img src="~/asset/img/dh2.png" alt="">
+										</li>
+										<li class="product_img_box">
+											<img src="~/asset/img/dh2.png" alt="">
+										</li>
+										<li class="product_img_box">
+											<img src="~/asset/img/dh2.png" alt="">
+										</li>
+										<li class="product_img_box">
+											<img src="~/asset/img/dh2.png" alt="">
+										</li>
+										<li class="product_img_box">
+											<img src="~/asset/img/dh2.png" alt="">
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="product_attribute mb-3">
+									<span class="label_btn primary me-2">New</span>
+									<span class="label_btn danger">@Model.Brand</span>
+								</div>
+								<p>Giá niêm yết: @String.Format("{0:N0} đ", Model.Price)</p>
+								<div class="product_price my-3">
+									<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount))</p>
+									<span class="label_btn danger">-@(disCount * 100)%</span>
+								</div>
+								<div class="option-product-tb">
+									<h4 class="title">Ưu Đãi Chung:</h4>
+									<ul class="option_list mt-2">
+										<li><b>+ Phiếu Mua Hàng <strong class="text-danger">2.000.000</strong> vnđ</b> <b><em>(Áp dụng Khi mua: Máy Tính Bảng, Đồng Hồ, Tai Nghe Samsung)</em></b></li>
+										<li>+ Giá không áp dụng cùng Chương trình giảm giá qua Quà Tặng Galaxy</li>
+										<li>+ Tặng Ốp Lưng Chính Hãng</li>
+										<li>+ Gói Samsung Care+ 1 Năm</li>
+										<li>+ Bảo Hành Chính Hãng 15 Tháng</li>
+										<li>+ Trả Góp 0%</li>
+										<li>+ Miễn Phí Dán Màn Hình 02 lần</li>
+										<li>+ Microsoft Office 365</li>
+										<li>+ Hỗ trợ thu cũ đổi mới lên đến 4.000.000đ (Xem chi tiết)</li>
+									</ul>
+								</div>
+								<h4 class="my-2">Thu cũ đổi mới :</h4>
+								<ul class="options doimoi">
+									<li class="active">
+										<h4 class="mb-1">Không Tham Gia</h4>
+										<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount))</p>
+									</li>
+									<li>
+										<h4 class="mb-1">Tham Gia</h4>
+										<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount*0.7))</p>
+									</li>
+								</ul>
+
+								<h4 class="my-2">Màu Sắc :</h4>
+								<ul class="options mausac">
+									<li class="active">
+										<span class="img">
+											<img src="~/asset/img/dh1.png" alt="">
+										</span>
+										<span>
+											<h4 class="mb-1">Vàng Solar</h4>
+											<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount))</p>
+										</span>
+									</li>
+									<li class="">
+										<span class="img">
+											<img src="~/asset/img/dh1.png" alt="">
+										</span>
+										<span>
+											<h4 class="mb-1">Xám Metal</h4>
+											<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount))</p>
+										</span>
+									</li>
+									<li class="">
+										<span class="img">
+											<img src="~/asset/img/dh1.png" alt="">
+										</span>
+										<span>
+											<h4 class="mb-1">Xanh Mint</h4>
+											<p>@String.Format("{0:N0} đ", (double)Model.Price * (1 - disCount))</p>
+										</span>
+									</li>
+								</ul>
+
+								<div class="action mt-4">
+									<ul class="action_list">
+										<li class="orange">
+											<span class="title">MUA NGAY</span>
+											<span>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
+										</li>
+										<li class="primary">
+											<span class="title">ĐĂNG KÝ TRẢ GÓP</span>
+											<span>Lãi suất thấp, duyệt nhanh</span>
+										</li>
+										<li class="grey">
+											<span class="title">CÔNG TY KREDIVO</span>
+											<span>Tra góp tôi đa 25 triệu</span>
+										</li>
+										<li class="primary">
+											<span class="title">TRẢ GÓP QUA THẺ</span>
+											<span>Visa, Master, JCB</span>
+										</li>
+										<li class="orange">
+											<span class="title">MUA NGAY - TRẢ SAU</span>
+											<span>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
+										</li>
+									</ul>
+									<p class="text-center">Hotline: <span class="phone_number">0948.666.000</span> - <span class="phone_number">028.3922.5733</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="tab-container">
+									<ul class="tab-menu">
+										<li class="tab-link active" data-tab="tab1">Mô tả sản phẩm</li>
+										<li class="tab-link" data-tab="tab2">Thông số kỹ thuật</li>
+									</ul>
+									<div class="tab-content active" id="tab1">
+										<p>@Model.Description</p>
+									</div>
+									<div class="tab-content" id="tab2">
+										<p>Nội dung Tab 2</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="comment-section">
+									<div class="comment-header clearfix">
+										<div class="comment-count">
+											<span>0 bình luận</span>
+										</div>
+										<div class="comment-sort">
+											<span>Sắp xếp theo</span>
+											<select class="sort-select">
+												<option value="latest">Mới nhất</option>
+												<option value="oldest">Cũ nhất</option>
+												<option value="most_liked">Nhiều lượt thích nhất</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="comment-box clearfix">
+										<div class="avatar">
+											<img src="~/asset/img/icon/avata.png" alt="User Avatar">
+										</div>
+										<div class="comment-input">
+											<div>
+												<div class="input-placeholder" place-holder="ehehe"></div>
+												<div class="input-box" contenteditable="true"></div>
+											</div>
+											<div class="comment-attachment">
+												<input type="file" id="file-attachment" hidden>
+												<label for="file-attachment">
+													<i class="attachment-icon">📎</i>
+												</label>
+											</div>
+										</div>
+										<div class="comment-action">
+											<button class="btn_send">Send</button>
+										</div>
+									</div>
+
+									<div class="plugin-info">
+										<a href="https://developers.facebook.com/products/social-plugins/comments/" target="_blank">
+											Plugin bình luận trên Facebook
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12d7-x2 ps-4">
+						<div class="row">
+							<div class="col-sm-12">
+								<ul class="fearture">
+									<li><img src="~/asset/img/icon/shield@2x.png" alt=""> Bảo hành 12 tháng</li>
+									<li><img src="~/asset/img/icon/visa@2x.png" alt=""> Trả góp 0% lãi suất</li>
+									<li><img src="~/asset/img/icon/money@2x.png" alt=""> Trả trước 0 đồng</li>
+									<li><img src="~/asset/img/icon/shipper@2x.png" alt=""> Giao hàng tận nơi</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="box_list">
+									<h3 class="list_title">Hệ thống cửa hàng</h3>
+									<ul class="list_content">
+										<li><a href="#" class="second_title">Tablet plaza tp.hcm</a></li>
+
+										<li><a href="#" class="active">Tablet plaza quận 5</a></li>
+										<li><a href="#" class="">182 Trần Bình Trọng Phường 3 Quận 5</a></li>
+										<li><a href="#" class="">Hotline: 0948.666.000</a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Gò Vấp</a></li>
+										<li><a href="#" class="">182 Trần Bình Trọng Phường 3 Quận 5</a></li>
+										<li><a href="#" class="">Hotline: 0948.666.000</a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Tân Bình</a></li>
+										<li><a href="#" class="">182 Trần Bình Trọng Phường 3 Quận 5</a></li>
+										<li><a href="#" class="">Hotline: 0948.666.000</a></li>
+									</ul>
+
+									<ul class="list_content">
+										<li><a href="#" class="second_title">TABLET PLAZA BÌNH DƯƠNG</a></li>
+
+										<li><a href="#" class="active">Tablet plaza thủ dầu 1</a></li>
+										<li><a href="#" class="">Số 449 Đại lộ Bình Dương, P. Phú Cường, TP.TDM</a></li>
+										<li><a href="#" class="">Hotline: <span class="strong">0834.290.290</span></a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Dĩ An(SRS Dĩ An)</a></li>
+										<li><a href="#" class="">233 Lý Thường Kiệt, P.Dĩ An, TP.Dĩ An</a></li>
+										<li><a href="#" class="">Hotline: <span class="strong"> 0888.62.72.62</span></a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Dĩ An</a></li>
+										<li><a href="#" class="">Số 249 Nguyễn An Ninh, P. Dĩ An, TP. Dĩ An</a></li>
+										<li><a href="#" class="">Hotline: <span class="strong">0917.84.74.74</span></a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Bến Cát</a></li>
+										<li><a href="#" class="">Lô A10 Golden Center City, QL13, Mỹ Phước, Bến Cát</a></li>
+										<li><a href="#" class="">Hotline: <span class="strong">0888.066.578</span></a></li>
+									</ul>
+
+									<ul class="list_content">
+										<li><a href="#" class="second_title">TABLET PLAZA ĐỒNG NAI</a></li>
+
+										<li><a href="#" class="active">Tablet Plaza Biên Hòa</a></li>
+										<li><a href="#" class="">Số 93 Đồng Khởi, P. Tam Hiệp, Tp. Biên Hòa</a></li>
+										<li><a href="#" class="">Hotline: <span class="strong"> 0933.033.966</span></a></li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				@if (ViewBag.RelatedProducts.Count > 0)
+				{
+					<div class="row">
+						<div class="col-sm-12">
+							<h4 class="section_tile mt-2 mb-4">Sản Phẩm Tương Tự</h4>
+							<div class="list_products">
+								<div class="slide_container">
+									<div class="row flex-nowrap inner_slide">
+										@foreach (product product in ViewBag.RelatedProducts)
+										{
+											var discount = 0.1;
+											var imgs = product.ImageURL.Split(";");
+											<div class="col-12d5">
+												<div class="product_item">
+													<!-- slider_img -->
+													<div class="product_img">
+														<div class="list_product_img">
+															<div class="list_img_product d-flex flex-nowrap" id="js_list_img_product">
+																<img src="~/asset/img/@imgs[0]" alt="">
+															</div>
+														</div>
+														<img src="~/asset/img/thuonghieu.png" alt="" class="trademark">
+													</div>
+													<!-- comtent -->
+													<div class="product_content">
+														<span class="product_status">Hotsale</span>
+														<h4 class="product_name"><a href="/products/details?id=@product.ProductId">@product.ProductName</a></h4>
+														<p class="cost_origin">@String.Format("{0:N0} đ", product.Price)</p>
+														<span class="product_price">@String.Format("{0:N0} đ", (double)product.Price * (1 - discount))</span>
+														<span class="sale_off">-@(discount * 100)%</span>
+													</div>
+
+													<!-- icons -->
+													<div class="product_actions">
+														<a class="btn btn_wishlist"><i class="fa-solid fa-heart"></i></a>
+														<a class="btn btn_addtocart"><i class="fa-solid fa-cart-plus"></i></a>
+													</div>
+												</div>
+											</div>
+										}
+									</div>
+								</div>
+
+								<!-- CONTROL SLIDER -->
+								<div class="control_slider">
+									<button class="slider_prev js_slider_prev" id="js_slider_prev"><i class="fa-solid fa-chevron-left"></i></button>
+									<button class="slider_next js_slider_next" id="js_slider_next"><i class="fa-solid fa-chevron-right"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll('.tab-link').forEach(function (tabLink) {
+		tabLink.addEventListener('click', function () {
+			// Remove active class from all tabs and contents
+			document.querySelectorAll('.tab-link').forEach(function (link) {
+				link.classList.remove('active');
+			});
+			document.querySelectorAll('.tab-content').forEach(function (content) {
+				content.classList.remove('active');
+			});
+
+			// Add active class to the clicked tab and corresponding content
+			this.classList.add('active');
+			const tabId = this.getAttribute('data-tab');
+			document.getElementById(tabId).classList.add('active');
+		});
+	});
+
+	$(document).ready(function () {
+		var $slideContainer = $('.inner_slide'); // Chứa các mục sản phẩm
+		var $slides = $slideContainer.children(); // Các mục sản phẩm
+		var slideWidth = $slides.first().outerWidth(true); // Chiều rộng của mỗi mục sản phẩm
+		var visibleSlides = Math.floor($('.slide_container').width() / slideWidth) + 1; // Số lượng mục sản phẩm hiển thị trên màn hình
+		var totalSlides = $slides.length; // Tổng số mục sản phẩm
+		var currentSlide = 0;
+
+		function moveSlider(index) {
+			var newLeft = -index * slideWidth;
+			$slideContainer.css('transform', 'translateX(' + newLeft + 'px)');
+			currentSlide = index;
+		}
+
+		$('#js_slider_prev').click(function () {
+			if (currentSlide > 0) {
+				moveSlider(currentSlide - 1);
+			} else {
+				moveSlider(totalSlides - visibleSlides); // Quay về slide cuối cùng
+			}
+		});
+
+		$('#js_slider_next').click(function () {
+			if (currentSlide < totalSlides - visibleSlides) {
+				moveSlider(currentSlide + 1);
+			} else {
+				moveSlider(0); // Quay về slide đầu tiên
+			}
+		});
+	});
+
+	//show img main
+	$(document).ready(function () {
+		$('.product_img_box img').click(function () {
+			// Xóa lớp active khỏi tất cả các li
+			$('.product_img_box').removeClass('active');
+
+			// Thêm lớp active vào li hiện tại
+			$(this).closest('.product_img_box').addClass('active');
+			// Lấy giá trị của src từ hình ảnh nhỏ đã được nhấp vào
+			var newSrc = $(this).attr('src');
+			// Cập nhật src của hình ảnh chính với giá trị mới
+			$('.product_img_main img').attr('src', newSrc);
+		});
+	});
+
+	//them class active
+	$(document).ready(function () {
+		$('.options li').click(function () {
+			$(this).closest('.options').find('li').removeClass('active')
+			$(this).addClass('active')
+		})
+	})
+
+
+
+</script>
+@section Styles {
+	<link rel="stylesheet" href="/asset/css/detail.css">
+}
